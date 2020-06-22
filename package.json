@@ -1,0 +1,14 @@
+{
+  "name": "my-bundler",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/parser": "^7.10.2",
+    "@babel/traverse": "^7.10.1"
+  },
+  "scripts": {
+    "build": "node index.js"
+  }
+}
