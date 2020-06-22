@@ -1,5 +1,6 @@
 const fs = require('fs')
-const generate = require('./generate.js')
+const generate = require('../utils/generate.js')
+const path = require('path')
 const rule = {
   'entry': '必须传入entry', 
   'output':  '必须传入output'
@@ -36,6 +37,12 @@ class Compiler {
     const generateCode = generate(entry)
     fs.writeFileSync(output, generateCode);
     this.Observer.trigger('end')
+  }
+  run() {
+    const { entry, output } = this.options
+    const generateCode = generate(entry)
+    const filePath = path.resolve(__dirname, './build.js')
+    fs.writeFileSync(filePath, generateCode);
   }
 }
 
