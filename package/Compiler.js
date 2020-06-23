@@ -27,22 +27,30 @@ class Compiler {
     this.Observer = Observer
   }
   build() {
-    this.Observer.trigger('start')
-    Object.keys(rule).forEach(key => {
-      if (!this.options[key]) {
-        throw new Error(rule[key])
-      }
-    })
-    const { entry, output } = this.options
-    const generateCode = generate(entry)
-    fs.writeFileSync(output, generateCode);
-    this.Observer.trigger('end')
+    try {
+      this.Observer.trigger('start')
+      Object.keys(rule).forEach(key => {
+        if (!this.options[key]) {
+          throw new Error(rule[key])
+        }
+      })
+      const { entry, output } = this.options
+      const generateCode = generate(entry)
+      fs.writeFileSync(output, generateCode);
+      this.Observer.trigger('end')
+    } catch(err) {
+      console.error('DEV Error: ' + err)
+    } 
   }
   run() {
-    const { entry, output } = this.options
-    const generateCode = generate(entry)
-    const filePath = path.resolve(__dirname, './build.js')
-    fs.writeFileSync(filePath, generateCode);
+    try {
+      const { entry, output } = this.options
+      const generateCode = generate(entry)
+      const filePath = path.resolve(__dirname, './build.js')
+      fs.writeFileSync(filePath, generateCode);
+    } catch(err) {
+      console.error('DEV Error: ' + err)
+    } 
   }
 }
 

@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const debounce = require('../utils/debounce')
+let child_process = require('child_process')
 var http = require('http').Server(app)
 var io = require('socket.io')(http)
 const fs = require('fs')
@@ -22,6 +23,7 @@ io.on('connection', function(socket) {
 });
 
 app.use(express.static(path.join(__dirname, "./")));
-http.listen('8010', () => {
-  console.log('http://localhost:8010')
+http.listen('8012', () => {
+  child_process.exec('open http://localhost:8012')
+  console.log('http://localhost:8012')
 })

@@ -11,13 +11,14 @@ html<!DOCTYPE html>
 <script id="code" src="./build.js"></script>
 <script>
 let socket = io();
-socket.on("change file", function(content) {
+socket.on("change file", function(hash, content) {
   var script = document.getElementById('code')
   script && document.body.removeChild(script)
   var _script = document.createElement('script')
   _script.src = './build.js'
-  _script.id = 'code'
+  _script.id = 'code_${hash}'
   document.body.appendChild(_script)
+  location.reload()
 });
 </script>
 </html>
