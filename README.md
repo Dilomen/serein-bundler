@@ -1,4 +1,4 @@
-# serein-bundler
+# serein-package
 
 构建一个简单的类似于 webpack 的打包工具
 
